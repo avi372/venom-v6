@@ -8,10 +8,10 @@ import os
 from keep_alive import keep_alive
 keep_alive()
 # insert your Telegram bot token here
-bot = telebot.TeleBot('7259034553:AAHYWdbEpMxeJAkv_HH1QYOChdMLMvot13E')
+bot = telebot.TeleBot('7807270597:AAGjiqDvfuInfIE3TONac7bwCXOpDrIW2Zw')
 
 # Admin user IDs
-admin_id = ["5588464519"]
+admin_id = ["6850753246"]
 
 # File to store allowed user IDs
 USER_FILE = "users.txt"
@@ -30,14 +30,14 @@ def read_users():
 # Function to read free user IDs and their credits from the file
 def read_free_users():
     try:
-        with open(FREE_USER_FILE, "r") as file:
+        with open(FREE_USER_FILE, "r") as file: # type: ignore
             lines = file.read().splitlines()
             for line in lines:
                 if line.strip():  # Check if line is not empty
                     user_info = line.split()
                     if len(user_info) == 2:
                         user_id, credits = user_info
-                        free_user_credits[user_id] = int(credits)
+                        teen[user_id] = int(credits)
                     else:
                         print(f"Ignoring invalid line in free user file: {line}")
     except FileNotFoundError:
@@ -76,6 +76,7 @@ def record_command_logs(user_id, command, target=None, port=None, time=None):
     log_entry = f"UserID: {user_id} | Time: {datetime.datetime.now()} | Command: {command}"
     if target:
         log_entry += f" | Target: {target}"
+        
     if port:
         log_entry += f" | Port: {port}"
     if time:
@@ -279,7 +280,7 @@ def start_attack_reply(message, target, port, time):
     user_info = message.from_user
     username = user_info.username if user_info.username else user_info.first_name
     
-    response = f"{username}, 𝐀𝐓𝐓𝐀𝐂𝐊 𝐒𝐓𝐀𝐑𝐓𝐄𝐃.🔥🔥\n\n𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n𝐏𝐨𝐫𝐭: {port}\n𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n𝐌𝐞𝐭𝐡𝐨𝐝: VIP- User of @venomXcrazy"
+    response = f"{username}, 𝐀𝐓𝐓𝐀𝐂𝐊 𝐒𝐓𝐀𝐑𝐓𝐄𝐃.🔥🔥\n\n𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n𝐏𝐨𝐫𝐭: {port}\n𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n𝐌𝐞𝐭𝐡𝐨𝐝: VIP- User of @Thakurji9312"
     bot.reply_to(message, response)
 
 # Dictionary to store the last time each user ran the /bgmi command
@@ -320,7 +321,7 @@ def handle_bgmi(message):
         else:
             response = "✅ Usage :- /bgmi <target> <port> <time>"  # Updated command syntax
     else:
-        response = ("🚫 Unauthorized Access! 🚫\n\nOops! It seems like you don't have permission to use the /bgmi command. DM TO BUY ACCESS:- @venomXcrazy")
+        response = ("🚫 Unauthorized Access! 🚫\n\nOops! It seems like you don't have permission to use the /bgmi command. DM TO BUY ACCESS:- @Thakurji9312")
 
     bot.reply_to(message, response)
 
@@ -357,8 +358,8 @@ def show_help(message):
 🤖 To See Admin Commands:
 💥 /admincmd : Shows All Admin Commands.
 
-Buy From :- @venomXcrazy
-Official Channel :- https://t.me/V3NOM_CH3AT
+Buy From :- @Thakurji9312
+Official Channel :- https://t.me/devthakur678
 '''
     for handler in bot.message_handlers:
         if hasattr(handler, 'commands'):
@@ -375,7 +376,7 @@ def welcome_start(message):
     user_name = message.from_user.first_name
     response = f'''❄️ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴘʀᴇᴍɪᴜᴍ ᴅᴅᴏs ʙᴏᴛ, {user_name}! ᴛʜɪs ɪs ʜɪɢʜ ǫᴜᴀʟɪᴛʏ sᴇʀᴠᴇʀ ʙᴀsᴇᴅ ᴅᴅᴏs. ᴛᴏ ɢᴇᴛ ᴀᴄᴄᴇss.
 🤖Try To Run This Command : /help 
-✅BUY :- @venomXcrazy'''
+✅BUY :- @Thakurji9312'''
     bot.reply_to(message, response)
 
 @bot.message_handler(commands=['rules'])
@@ -395,14 +396,14 @@ def welcome_plan(message):
     response = f'''{user_name}, Brother Only 1 Plan Is Powerfull Then Any Other Ddos !!:
 
 Vip 🌟 :
--> Attack Time : 300 (S)
-> After Attack Limit : 10 sec
--> Concurrents Attack : 5
+-> Attack Time : 6000 (S)
+> After Attack Limit : 1 sec
+-> Concurrents Attack : 50
 
 Pr-ice List💸 :
-Day-->80 Rs
-Week-->400 Rs
-Month-->1000 Rs
+Day-->30 Rs
+Week-->200 Rs
+Month-->800 Rs
 '''
     bot.reply_to(message, response)
 
@@ -451,5 +452,6 @@ while True:
         bot.polling(none_stop=True)
     except Exception as e:
         print(e)
+
 
 
